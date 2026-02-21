@@ -1,0 +1,56 @@
+-- all data
+select * from movies_data ; 
+ -- 1] total no of movies and tv shows
+ select count(*),type 
+ from movies_data
+ group by type ;
+ 
+--2]most commen rating 
+select rating, count(rating) as commen
+from movies_data 
+group by rating    
+order by commen desc ; 
+
+--3] which yaer produce more movies / tv shows
+
+select release_year , count(release_year) as most_produced_year from movies_data
+group by release_year
+order by most_produced_year desc
+limit 5;
+
+--4 which country produced more movies and tv shows
+select country , count(country) as most_produced_country from movies_data
+group by country
+order by most_produced_country desc
+limit 5;
+
+--5] which director produced more movies and tv shows
+select director , count(director) as most_produced_director from movies_data
+group by director
+order by most_produced_director desc
+limit 5;
+
+--  INTERMEDIATE QUIRIES
+
+--6] every year produce how many movies
+select release_year , count(release_year) as total_movies  from movies_data
+group by release_year; 
+
+--7]average duration of movies and tv shows 
+select avg(duration_num) as avg_duration from movies_data; 
+
+--8]select top 5 combination of genres [in this genres colomn genres are multiple combined genres  ]
+select listed_in , count(listed_in) as total_genre from movies_data
+group by listed_in
+order by total_genre desc
+limit 5 ;
+
+--9] count content that produce after 2018 year
+select release_year , count(title) as total_movies from movies_data
+where release_year > 2018
+group by release_year  ;
+
+--10] how many conetnt produced by india 
+select country , count(title) as total_movies from movies_data 
+where country = "India";
+ 
